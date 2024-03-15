@@ -1,0 +1,42 @@
+﻿@model List<Zapatilla>
+
+<h1>Nuevas Imagenes Zapatillas</h1>
+
+<button class="btn btn-dark" id="botonNuevaCaja">
+    Nueva Caja
+</button>
+
+<div class="container mt-5">
+    <h2>Formulario</h2>
+    <form method="post" asp-action="InsertImagen" id="formImagenes" enctype="multipart/form-data">
+    <button class="btn btn-primary" type="submit">
+        Insertar Imagenes
+    </button>
+    <br />
+    <br />
+        <select name="IdProducto">
+            @foreach (Zapatilla zapa in Model)
+            {
+                <option value="@zapa.IdProducto">
+                    @zapa.Nombre
+                </option>
+            }
+        </select>
+        <br />
+        <br />
+        <label>Imagen</label>
+        <br />
+        <input type="text" name="imagen" class="form-control" />
+    </form>
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#botonNuevaCaja').click(function () {
+                $('#formImagenes').append('<br /><label>Imagen</label><br /><input type="text" name="imagen" class="form-control" />');
+            });
+        });
+    </script>
+}

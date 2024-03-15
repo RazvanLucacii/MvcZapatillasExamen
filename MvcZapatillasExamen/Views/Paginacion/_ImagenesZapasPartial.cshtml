@@ -1,0 +1,32 @@
+﻿@model ImagenZapatilla
+
+<div class="container">
+    <div class="card" style="width: 28rem;">
+        <p class="card-text">Registro @ViewData["POSICION"] de @ViewData["REGISTROS"] registros.</p>
+        <div>
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">
+                    <a onclick="cargarImagenesZapas(1)">
+                        PRIMERO
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a onclick="cargarImagenesZapas(@ViewData["ANTERIOR"])">
+                        ANTERIOR
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a onclick="cargarImagenesZapas(@ViewData["SIGUIENTE"])">
+                        SIGUIENTE
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a onclick="cargarImagenesZapas(@ViewData["ULTIMO"])">
+                        ULTIMO
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <img src="@Model.Imagen" />
+    </div>
+</div>

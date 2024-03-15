@@ -1,0 +1,50 @@
+﻿@{
+    Zapatilla? zapatilla = ViewData["ZAPATILLASELECCIONADA"] as Zapatilla;
+}
+
+@if (zapatilla != null)
+{
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark">
+            Nombre: @zapatilla.Nombre
+        </li>
+        <li class="list-group-item">
+            @zapatilla.Descripcion
+        </li>
+        <li class="list-group-item">
+            Precio: @zapatilla.Precio
+        </li>
+    </ul>
+}
+
+<hr />
+<div id="zapatillas-partial"></div>
+<hr />
+<p>
+    <a asp-action="zapatillas" asp-controller="paginacion">
+        Volver al index
+    </a>
+</p>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            cargarImagenesZapas(@ViewData["POSICION"]);
+        });
+        function cargarImagenesZapas(posicion) {
+            var idProducto = @ViewData["ZAPATILLA"];
+
+            $.ajax({
+                url: '@Url.Action("ImagenesDetailsPartial", "Paginacion")',
+                type: 'GET',
+                data: { posicion: posicion, idproducto: idProducto },
+                success: function (result) {
+                    $('#zapatillas-partial').html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    </script>
+}
